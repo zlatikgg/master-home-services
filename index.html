@@ -195,6 +195,22 @@
             margin: 16px 0;
         }
 
+        /* Кнопка прайса */
+        .btn-price {
+            background: #f0f2f5;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .btn-price:hover {
+            background: #d97706;
+            color: white;
+        }
+
         /* Специалисты */
         .team-grid {
             display: grid;
@@ -246,7 +262,7 @@
             margin-bottom: 20px;
         }
 
-        /* форма вызова */
+        /* Форма вызова */
         .callback-form {
             background: linear-gradient(105deg, #1e2a3e 0%, #0f172a 100%);
             border-radius: 40px;
@@ -276,6 +292,67 @@
         .form-grid button:hover {
             background: #ea580c;
         }
+
+        /* Модальное окно (прайс) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 28px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+        }
+        .close-modal:hover {
+            color: #d97706;
+        }
+        .price-list {
+            margin-top: 20px;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .price-service {
+            font-weight: 500;
+        }
+        .price-amount {
+            color: #d97706;
+            font-weight: 700;
+        }
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #1e4b6e;
+        }
+
         footer {
             background: #0f172a;
             color: #cbd5e1;
@@ -327,10 +404,34 @@
     <div class="container">
         <div class="section-title">🔧 Наши услуги</div>
         <div class="services-grid">
-            <div class="service-card"><div class="service-icon"><i class="fas fa-wrench"></i></div><h3>Слесарные работы</h3><p>Замки, петли, мебель, радиаторы, мелкий ремонт</p><div class="price">от 800 ₽</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-toilet"></i></div><h3>Сантехника</h3><p>Установка/замена смесителей, унитазов, труб, устранение засоров</p><div class="price">от 1000 ₽</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Электрика</h3><p>Розетки, выключатели, щитки, диагностика, замена проводки</p><div class="price">от 900 ₽</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-tools"></i></div><h3>Комплексный выезд</h3><p>Сразу все три специалиста — экономия до 20%</p><div class="price">от 2500 ₽</div></div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                <h3>Слесарные работы</h3>
+                <p>Замки, петли, мебель, радиаторы, мелкий ремонт</p>
+                <div class="price">от 800 ₽</div>
+                <button class="btn-price" onclick="showPriceList('slesar')">📋 Смотреть прайс</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-toilet"></i></div>
+                <h3>Сантехника</h3>
+                <p>Установка/замена смесителей, унитазов, труб, устранение засоров</p>
+                <div class="price">от 1000 ₽</div>
+                <button class="btn-price" onclick="showPriceList('santeh')">📋 Смотреть прайс</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Электрика</h3>
+                <p>Розетки, выключатели, щитки, диагностика, замена проводки</p>
+                <div class="price">от 900 ₽</div>
+                <button class="btn-price" onclick="showPriceList('electro')">📋 Смотреть прайс</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3>Комплексный выезд</h3>
+                <p>Сразу все три специалиста — экономия до 20%</p>
+                <div class="price">от 2500 ₽</div>
+                <button class="btn-price" onclick="showPriceList('complex')">📋 Смотреть прайс</button>
+            </div>
         </div>
     </div>
 </section>
@@ -382,6 +483,17 @@
     </div>
 </section>
 
+<!-- Всплывающее окно с прайс-листом -->
+<div id="priceModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title" id="modalTitle">Прайс-лист</h2>
+        <div id="priceListContent" class="price-list">
+            <!-- сюда будет подставляться список услуг -->
+        </div>
+    </div>
+</div>
+
 <footer>
     <div class="container">
         <p>© 2025 ProfMaster — Слесари, сантехники, электрики. Лицензия, все мастера проверены.</p>
@@ -390,6 +502,7 @@
 </footer>
 
 <script>
+    // Обработка формы вызова мастера
     document.getElementById('masterForm').addEventListener('submit', function(e){
         e.preventDefault();
         let name = document.getElementById('nameInput').value.trim();
@@ -402,6 +515,82 @@
         document.getElementById('formMessage').innerHTML = `✅ Спасибо, ${name}! Мастер (${master}) свяжется с вами в ближайшее время.`;
         document.getElementById('masterForm').reset();
         setTimeout(() => { document.getElementById('formMessage').innerHTML = ""; }, 4000);
+    });
+
+    // Прайс-листы для каждой профессии
+    const priceLists = {
+        slesar: {
+            title: "🔧 Слесарные работы",
+            services: [
+                { name: "Замена замка", price: "800 ₽" },
+                { name: "Ремонт двери", price: "600 ₽" },
+                { name: "Установка радиатора", price: "1500 ₽" },
+                { name: "Мелкий ремонт", price: "500 ₽" },
+                { name: "Сборка мебели", price: "1200 ₽" }
+            ]
+        },
+        santeh: {
+            title: "🚰 Сантехнические работы",
+            services: [
+                { name: "Замена смесителя", price: "1000 ₽" },
+                { name: "Установка унитаза", price: "1500 ₽" },
+                { name: "Устранение засора", price: "800 ₽" },
+                { name: "Замена труб", price: "от 2000 ₽" },
+                { name: "Подключение стиральной машины", price: "1200 ₽" }
+            ]
+        },
+        electro: {
+            title: "⚡ Электромонтажные работы",
+            services: [
+                { name: "Замена розетки", price: "500 ₽" },
+                { name: "Установка выключателя", price: "500 ₽" },
+                { name: "Замена автомата", price: "900 ₽" },
+                { name: "Диагностика проводки", price: "1000 ₽" },
+                { name: "Установка люстры", price: "800 ₽" }
+            ]
+        },
+        complex: {
+            title: "🔨 Комплексный выезд",
+            services: [
+                { name: "3 специалиста сразу", price: "2500 ₽" },
+                { name: "Экономия от 15%", price: "—" },
+                { name: "Диагностика бесплатно", price: "0 ₽" },
+                { name: "Гарантия на все работы", price: "12 месяцев" }
+            ]
+        }
+    };
+
+    // Функция показа окна с прайсом
+    function showPriceList(type) {
+        const data = priceLists[type];
+        if (!data) return;
+        
+        document.getElementById('modalTitle').innerHTML = data.title;
+        
+        let html = '';
+        for (let item of data.services) {
+            html += `
+                <div class="price-item">
+                    <span class="price-service">${item.name}</span>
+                    <span class="price-amount">${item.price}</span>
+                </div>
+            `;
+        }
+        document.getElementById('priceListContent').innerHTML = html;
+        document.getElementById('priceModal').style.display = 'flex';
+    }
+
+    // Закрытие окна при нажатии на крестик
+    document.querySelector('.close-modal').addEventListener('click', function() {
+        document.getElementById('priceModal').style.display = 'none';
+    });
+
+    // Закрытие окна при клике на серую область вне окна
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('priceModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
     });
 </script>
 </body>
