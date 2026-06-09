@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ProfMaster | Слесари, Сантехники, Электрики на дом</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fc;
+            color: #1e2a3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background: rgba(255,255,255,0.96);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e4b6e, #2b7a4b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #d97706;
+            background: none;
+            -webkit-background-clip: unset;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #d97706;
+        }
+
+        .btn-call {
+            background: #d97706;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(217,119,6,0.2);
+        }
+        .btn-call:hover {
+            background: #b45309;
+            transform: scale(1.02);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 70px 0 50px;
+            background: linear-gradient(120deg, #eef2ff 0%, #ffffff 100%);
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #334155;
+            margin-bottom: 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #1e4b6e;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-outline {
+            border: 2px solid #1e4b6e;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #1e4b6e;
+            text-decoration: none;
+        }
+        .hero-stats {
+            flex: 0.8;
+            background: white;
+            padding: 30px;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stats-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #d97706;
+        }
+
+        /* Секция услуг */
+        .section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 28px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: 0.25s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e9edf2;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #fed7aa;
+            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: #d97706;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .price {
+            font-weight: 700;
+            color: #1e4b6e;
+            margin: 16px 0;
+        }
+
+        /* Специалисты */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            text-align: center;
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            background: #cbd5e1;
+            margin-bottom: 16px;
+        }
+        .badge {
+            background: #eef2ff;
+            color: #1e4b6e;
+            border-radius: 40px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Отзывы */
+        .reviews-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .review {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 16px;
+        }
+        .review p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* форма вызова */
+        .callback-form {
+            background: linear-gradient(105deg, #1e2a3e 0%, #0f172a 100%);
+            border-radius: 40px;
+            padding: 50px 40px;
+            color: white;
+        }
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .form-grid input, .form-grid select, .form-grid button {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 60px;
+            border: none;
+            font-size: 1rem;
+        }
+        .form-grid button {
+            background: #d97706;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .form-grid button:hover {
+            background: #ea580c;
+        }
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 32px 0;
+            margin-top: 20px;
+        }
+        @media (max-width: 700px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .header-flex { flex-direction: column; }
+            .nav-links { gap: 18px; flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-flex">
+        <div class="logo">Prof<span>Master</span></div>
+        <div class="nav-links">
+            <a href="#services">Услуги</a>
+            <a href="#team">Мастера</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#call">Вызов</a>
+        </div>
+        <a href="#call" class="btn-call"><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <h1>Слесарь, сантехник, электрик — <span style="color:#d97706">за час</span></h1>
+            <p>Профессиональная помощь на дому. Работаем без выходных. Гарантия на все виды работ.</p>
+            <div class="hero-buttons">
+                <a href="#call" class="btn-primary">Вызвать мастера →</a>
+                <a href="#services" class="btn-outline">Узнать цены</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stats-number">4500+</div>
+            <div>довольных клиентов</div>
+            <div class="stats-number" style="font-size: 1.8rem;">25 мин</div>
+            <div>среднее время прибытия</div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-title">🔧 Наши услуги</div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon"><i class="fas fa-wrench"></i></div><h3>Слесарные работы</h3><p>Замки, петли, мебель, радиаторы, мелкий ремонт</p><div class="price">от 800 ₽</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-toilet"></i></div><h3>Сантехника</h3><p>Установка/замена смесителей, унитазов, труб, устранение засоров</p><div class="price">от 1000 ₽</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Электрика</h3><p>Розетки, выключатели, щитки, диагностика, замена проводки</p><div class="price">от 900 ₽</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-tools"></i></div><h3>Комплексный выезд</h3><p>Сразу все три специалиста — экономия до 20%</p><div class="price">от 2500 ₽</div></div>
+        </div>
+    </div>
+</section>
+
+<section id="team" class="section" style="background:#fef9f0;">
+    <div class="container">
+        <div class="section-title">👨‍🔧 Лучшие специалисты</div>
+        <div class="team-grid">
+            <div class="team-card"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Алексей"><h3>Алексей С.</h3><div class="badge">Слесарь 12 лет</div><p>Ремонт любой сложности</p></div>
+            <div class="team-card"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Дмитрий"><h3>Дмитрий В.</h3><div class="badge">Сантехник</div><p>Устранение течей, монтаж</p></div>
+            <div class="team-card"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Игорь"><h3>Игорь П.</h3><div class="badge">Электрик 5 разряда</div><p>Безопасность и сертификаты</p></div>
+            <div class="team-card"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Мария"><h3>Мария К.</h3><div class="badge">Диспетчер</div><p>Подберёт мастера за 2 мин</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="reviews" class="section">
+    <div class="container">
+        <div class="section-title">⭐ Отзывы клиентов</div>
+        <div class="reviews-slider">
+            <div class="review"><div class="stars">★★★★★</div><p>“Вызывал электрика — приехал через 30 минут, всё проверил, заменил автомат. Рекомендую!”</p><strong>- Антон, м. Речной вокзал</strong></div>
+            <div class="review"><div class="stars">★★★★★</div><p>“Сантехник Дмитрий за час поменял смеситель и кран. Чисто, аккуратно. Спасибо!”</p><strong>- Елена, Южное Бутово</strong></div>
+            <div class="review"><div class="stars">★★★★☆</div><p>“Справились с засором быстро, дали гарантию. Цена адекватная.”</p><strong>- Сергей</strong></div>
+        </div>
+    </div>
+</section>
+
+<section id="call" class="section">
+    <div class="container">
+        <div class="callback-form">
+            <h2 style="margin-bottom: 10px;">📞 Вызвать мастера на дом</h2>
+            <p>Оставьте заявку — перезвоним за 1 минуту</p>
+            <form id="masterForm" action="#" method="post">
+                <div class="form-grid">
+                    <input type="text" placeholder="Ваше имя" required id="nameInput">
+                    <input type="tel" placeholder="Телефон" required id="phoneInput">
+                    <select id="masterType">
+                        <option value="слесарь">Слесарь</option>
+                        <option value="сантехник">Сантехник</option>
+                        <option value="электрик">Электрик</option>
+                        <option value="комплекс">Комплексный выезд</option>
+                    </select>
+                    <button type="submit" id="submitBtn">Вызвать бесплатно</button>
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 20px;">* Выезд мастера — от 0 ₽, диагностика при заказе ремонта бесплатно</p>
+            </form>
+            <div id="formMessage" style="margin-top: 20px; color:#facc15;"></div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2025 ProfMaster — Слесари, сантехники, электрики. Лицензия, все мастера проверены.</p>
+        <p style="margin-top: 8px;"><i class="fas fa-map-marker-alt"></i> Москва и МО, работаем круглосуточно</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('masterForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        let name = document.getElementById('nameInput').value.trim();
+        let phone = document.getElementById('phoneInput').value.trim();
+        let master = document.getElementById('masterType').value;
+        if(name === "" || phone === ""){
+            document.getElementById('formMessage').innerHTML = "❌ Заполните имя и телефон!";
+            return;
+        }
+        document.getElementById('formMessage').innerHTML = `✅ Спасибо, ${name}! Мастер (${master}) свяжется с вами в ближайшее время.`;
+        document.getElementById('masterForm').reset();
+        setTimeout(() => { document.getElementById('formMessage').innerHTML = ""; }, 4000);
+    });
+</script>
+</body>
+</html>
