@@ -90,10 +90,13 @@
             transform: scale(1.02);
         }
 
-        /* Hero */
+        /* Hero с фоновым изображением */
         .hero {
             padding: 70px 0 50px;
-            background: linear-gradient(120deg, #eef2ff 0%, #ffffff 100%);
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1581141849291-1125c7b692b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         .hero-grid {
             display: flex;
@@ -110,10 +113,11 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
+            color: white;
         }
         .hero-text p {
             font-size: 1.2rem;
-            color: #334155;
+            color: #e2e8f0;
             margin-bottom: 30px;
         }
         .hero-buttons {
@@ -122,27 +126,35 @@
             flex-wrap: wrap;
         }
         .btn-primary {
-            background: #1e4b6e;
+            background: #d97706;
             color: white;
             padding: 12px 28px;
             border-radius: 40px;
             font-weight: 600;
             text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-primary:hover {
+            background: #b45309;
         }
         .btn-outline {
-            border: 2px solid #1e4b6e;
+            border: 2px solid white;
             padding: 10px 26px;
             border-radius: 40px;
             font-weight: 600;
-            color: #1e4b6e;
+            color: white;
             text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
         }
         .hero-stats {
             flex: 0.8;
-            background: white;
+            background: rgba(255,255,255,0.95);
             padding: 30px;
             border-radius: 32px;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
             text-align: center;
         }
         .stats-number {
@@ -174,11 +186,13 @@
             transition: 0.25s;
             box-shadow: 0 8px 20px rgba(0,0,0,0.02);
             border: 1px solid #e9edf2;
+            cursor: pointer;
         }
         .service-card:hover {
             transform: translateY(-6px);
-            border-color: #fed7aa;
-            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.1);
+            border-color: #d97706;
+            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.15);
+            background: #fefaf5;
         }
         .service-icon {
             font-size: 3rem;
@@ -193,22 +207,7 @@
             font-weight: 700;
             color: #1e4b6e;
             margin: 16px 0;
-        }
-
-        /* Кнопка прайса */
-        .btn-price {
-            background: #f0f2f5;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 30px;
-            margin-top: 15px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .btn-price:hover {
-            background: #d97706;
-            color: white;
+            font-size: 1.2rem;
         }
 
         /* Специалисты */
@@ -361,7 +360,7 @@
             margin-top: 20px;
         }
         @media (max-width: 700px) {
-            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text h1 { font-size: 2rem; }
             .header-flex { flex-direction: column; }
             .nav-links { gap: 18px; flex-wrap: wrap; justify-content: center; }
         }
@@ -381,6 +380,7 @@
     </div>
 </header>
 
+<!-- Hero с фоновым изображением инструментов -->
 <section class="hero">
     <div class="container hero-grid">
         <div class="hero-text">
@@ -404,33 +404,29 @@
     <div class="container">
         <div class="section-title">🔧 Наши услуги</div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="showPriceList('slesar')">
                 <div class="service-icon"><i class="fas fa-wrench"></i></div>
                 <h3>Слесарные работы</h3>
                 <p>Замки, петли, мебель, радиаторы, мелкий ремонт</p>
                 <div class="price">от 800 ₽</div>
-                <button class="btn-price" onclick="showPriceList('slesar')">📋 Смотреть прайс</button>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="showPriceList('santeh')">
                 <div class="service-icon"><i class="fas fa-toilet"></i></div>
                 <h3>Сантехника</h3>
                 <p>Установка/замена смесителей, унитазов, труб, устранение засоров</p>
                 <div class="price">от 1000 ₽</div>
-                <button class="btn-price" onclick="showPriceList('santeh')">📋 Смотреть прайс</button>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="showPriceList('electro')">
                 <div class="service-icon"><i class="fas fa-bolt"></i></div>
                 <h3>Электрика</h3>
                 <p>Розетки, выключатели, щитки, диагностика, замена проводки</p>
                 <div class="price">от 900 ₽</div>
-                <button class="btn-price" onclick="showPriceList('electro')">📋 Смотреть прайс</button>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="showPriceList('complex')">
                 <div class="service-icon"><i class="fas fa-tools"></i></div>
                 <h3>Комплексный выезд</h3>
                 <p>Сразу все три специалиста — экономия до 20%</p>
                 <div class="price">от 2500 ₽</div>
-                <button class="btn-price" onclick="showPriceList('complex')">📋 Смотреть прайс</button>
             </div>
         </div>
     </div>
@@ -526,7 +522,8 @@
                 { name: "Ремонт двери", price: "600 ₽" },
                 { name: "Установка радиатора", price: "1500 ₽" },
                 { name: "Мелкий ремонт", price: "500 ₽" },
-                { name: "Сборка мебели", price: "1200 ₽" }
+                { name: "Сборка мебели", price: "1200 ₽" },
+                { name: "Ремонт петель", price: "400 ₽" }
             ]
         },
         santeh: {
@@ -536,7 +533,8 @@
                 { name: "Установка унитаза", price: "1500 ₽" },
                 { name: "Устранение засора", price: "800 ₽" },
                 { name: "Замена труб", price: "от 2000 ₽" },
-                { name: "Подключение стиральной машины", price: "1200 ₽" }
+                { name: "Подключение стиральной машины", price: "1200 ₽" },
+                { name: "Установка раковины", price: "1300 ₽" }
             ]
         },
         electro: {
@@ -546,7 +544,8 @@
                 { name: "Установка выключателя", price: "500 ₽" },
                 { name: "Замена автомата", price: "900 ₽" },
                 { name: "Диагностика проводки", price: "1000 ₽" },
-                { name: "Установка люстры", price: "800 ₽" }
+                { name: "Установка люстры", price: "800 ₽" },
+                { name: "Прокладка кабеля", price: "от 1500 ₽" }
             ]
         },
         complex: {
@@ -555,7 +554,8 @@
                 { name: "3 специалиста сразу", price: "2500 ₽" },
                 { name: "Экономия от 15%", price: "—" },
                 { name: "Диагностика бесплатно", price: "0 ₽" },
-                { name: "Гарантия на все работы", price: "12 месяцев" }
+                { name: "Гарантия на все работы", price: "12 месяцев" },
+                { name: "Срочный выезд (30 мин)", price: "+500 ₽" }
             ]
         }
     };
